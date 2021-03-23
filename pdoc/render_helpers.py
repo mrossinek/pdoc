@@ -52,7 +52,7 @@ def highlight(code: str) -> str:
 
 
 @cache
-def _markdown(docstring: str) -> str:
+def render_markdown(docstring: str) -> str:
     """
     Convert `docstring` from Markdown to HTML.
     """
@@ -71,7 +71,7 @@ def render_docstring(context: Context, docstring: str) -> str:
         getattr(context["module"].obj, "__docformat__", context["docformat"]) or ""
     )
     docstring = docstrings.convert(docstring, docformat)
-    return _markdown(docstring)
+    return docstring
 
 
 def split_identifier(all_modules: Container[str], fullname: str) -> tuple[str, str]:
